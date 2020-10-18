@@ -12,11 +12,16 @@
     "build": "cross-env NODE_ENV=production remax build -t"
   },
   "dependencies": {
+    "@remax/plugin-less": "^1.0.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "remax": "^2.7.7"
+    "remax": "^2.7.7",
+    "mobx": "^6.0.1",
+    "use-debounce": "^5.0.1"
   },
   "devDependencies": {
-    "cross-env": "^7.0.2"
+    "cross-env": "^7.0.2",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "optimize-css-assets-webpack-pligin": "^5.0.4"
   }
 }
