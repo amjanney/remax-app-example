@@ -5,6 +5,7 @@ function request(url, data = {}, options = {}) {
       method: 'GET',
       dataType: 'json',
       data,
+      autoCheckSuccess: true,
       loading: true,
     },
     options
@@ -21,7 +22,7 @@ function request(url, data = {}, options = {}) {
     delete options.data;
   } else {
     options.headers = Object.assign({}, options.headers, {
-      'Content-Type': 'Application/json',
+      'Content-Type': 'Application/json; charset=UTF-8',
     });
     options.data = JSON.stringify(options.data);
   }
@@ -58,19 +59,19 @@ function catchSuccessFail(ret) {
   const data = ret.data;
   if (!data.success) {
     const error = new Error(data.message || data.errorMsg);
-    error.requestRet = retl;
+    error.requestRet = ret;
     throw error;
   }
   return Promise.resolve(data);
 }
 
 export function get(url, data, options = {}) {
-  optios.method = 'GET';
+  options.method = 'GET';
   return request(url, data, options).then(catchSuccessFail);
 }
 
 export function post(url, data, options = {}) {
-  optios.method = 'POST';
+  options.method = 'POST';
   return request(url, data, options).then(catchSuccessFail);
 }
 
