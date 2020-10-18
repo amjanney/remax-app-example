@@ -21,9 +21,17 @@ export default () => {
    */
   const [data, status, error] = useAsync(testGet, param);
 
+  return useRender(renderHTML, Selection.defaultRender, [data, status, error]);
+};
+
+/**
+ * 可以把视图渲染的部分抽离出来，只负责渲染，不和逻辑混在一起，保持代码的纯洁
+ */
+
+function renderHTML(data) {
   return (
     <View className={styles.app}>
       <View className={styles.header}>header</View>
     </View>
   );
-};
+}
